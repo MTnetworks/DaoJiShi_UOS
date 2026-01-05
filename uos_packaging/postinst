@@ -1,0 +1,37 @@
+#!/bin/bash
+set -e
+
+# Update desktop database
+if command -v update-desktop-database >/dev/null; then
+    update-desktop-database /usr/share/applications
+fi
+
+# Update icon cache
+if command -v gtk-update-icon-cache >/dev/null; then
+    gtk-update-icon-cache -f -t /usr/share/icons/hicolor
+fi
+
+# Add to Desktop for all users
+DESKTOP_FILE="/usr/share/applications/DaoJiShi.desktop"
+
+if [ -f "$DESKTOP_FILE" ]; then
+    # Copy to /etc/skel/Desktop for new users
+    if [ -d "/etc/skel/Desktop" ]; then
+        cp "$DESKTOP_FILE" "/etc/skel/Desktop/"
+        chmod +x "/etc/skel/Desktop/DaoJiShi.desktop"
+    fi
+
+    # Copy to existing users' Desktop
+    # We iterate over directories in /home
+    for user_dir in /home/*; do
+        if [ -d "$user_dir/Desktop" ]; then
+            cp "$DESKTOP_FILE" "$user_dir/Desktop/"
+            chmod +x "$user_dir/Desktop/DaoJiShi.desktop"
+            # Try to fix ownership
+            user_name=$(basename "$user_dir")
+            chown "$user_name:$user_name" "$user_dir/Desktop/DaoJiShi.desktop" || true
+        fi
+    done
+fi
+
+echo "DaoJiShi installation post-processing complete."

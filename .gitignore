@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+build/
+dist/
+.DS_Store
+.vscode/
+.idea/
+*.egg-info/
+*.spec
+*.deb
+dist_deb_build/

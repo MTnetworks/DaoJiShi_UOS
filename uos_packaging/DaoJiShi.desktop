@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=DaoJiShi
+Name[zh_CN]=倒计时
+Comment=Countdown Timer
+Exec=/opt/DaoJiShi/launch.sh
+Icon=/opt/DaoJiShi/daojishi.png
+Terminal=false
+Type=Application
+Categories=Utility;Time;
+StartupNotify=true
+StartupWMClass=DaoJiShi
