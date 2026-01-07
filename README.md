@@ -66,13 +66,9 @@
 ---
 *Developed with Python & PyQt5*
 
-## Linux (UOS/Deepin/Ubuntu) 打包指南
+## Linux (UOS) 打包指南
 
-本项目提供了构建 `.deb` 安装包的脚本，方便在 UOS、Deepin 或 Ubuntu 等基于 Debian 的系统上安装。
-
-### 前置条件
-确保系统已安装 Python 3 和 pip。
-推荐在 UOS 终端中执行以下操作。
+本项目采用 **源代码 **直接打包，并依赖 UOS 系统自带的 Python 和 PyQt5 环境。这能从根本上解决 glibc 版本冲突、动态库加载失败等“水土不服”的问题。这意味着当用户安装 deb 包时，系统会自动安装最适合当前系统的 PyQt5 版本，保证 100% 兼容。
 
 ### 打包步骤
 
